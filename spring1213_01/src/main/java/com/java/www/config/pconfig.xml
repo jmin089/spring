@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
+                          http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<!-- 여기에 등록된 것을 IOC턴데이너에 설정을 해줌. -->
+		<bean id="pconfig" class="com.java.www.service.PServiceImpl" />
+</beans>
