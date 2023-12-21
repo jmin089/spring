@@ -21,18 +21,20 @@
 		   button{width:150px; height:40px; margin-top:30px; }
 		</style>
 		<script>
-			$(function(){
-				$("#fbtn").click(function(){
-					mm_frm.submit();
-				})
-			})
+			
 		</script>
 	</head>
 	<body>
 	  
 	  <div>
-	  <form name="mm_frm" method="post" action="mUpdate">
 	   <h1>회원정보보기</h1>
+	  <form name="mm_frm" method="post" action="mUpdate">
+	  	<input type="hidden" name="id" value="${memberDto.id}">
+	  	<input type="hidden" name="pw" value="${memberDto.pw}">
+	  	<input type="hidden" name="name" value="${memberDto.name}">
+	  	<input type="hidden" name="phone" value="${memberDto.phone}">
+	  	<input type="hidden" name="gender" value="${memberDto.gender}">
+	  	<input type="hidden" name="hobby" value="${memberDto.hobby}">
 		   <table>
 		     <colgroup>
 		       <col width="20%">
@@ -40,30 +42,38 @@
 		     </colgroup>
 		     <tr>
 		       <th>아이디</th>
-		       <td><input type="text" name="id" id="id" value="${memberDto.id}"></td>
+		       <td>${memberDto.id}</td>
 		     </tr>
 		     <tr>
 		       <th>패스워드</th>
-		       <td><input type="password" name="pw" id="pw" value="${memberDto.pw}"></td>
+		       <td>${memberDto.pw}</td>
 		     </tr>
 		     <tr>
 		       <th>이름</th>
-		       <td><input type="text" name="name" id="name" value="${memberDto.name}"></td>
+		       <td>${memberDto.name}</td>
 		     </tr>
 		     <tr>
 		       <th>전화번호</th>
-		       <td><input type="text" name="phone" id="phone" value="${memberDto.phone}"></td>
+		       <td>${memberDto.phone}</td>
 		     </tr>
 		     <tr>
 		       <th>성별</th>
-		       <td><input type="text" name="gender" id="gender" value="${memberDto.gender}"></td>
+		       <td>${memberDto.gender}</td>
 		     </tr>
 		     <tr>
 		       <th>취미</th>
-		       <td><input type="text" name="hobby" id="hobby" value="${memberDto.hobby}"></td>
+		       <td>${memberDto.hobby}</td>
 		     </tr>
 		   </table>
-		   <a><button type="button" id="fbtn">회원정보수정</button></a>
+		   <script>
+			$(function(){
+				$("#fbtn").click(function(){
+					alert("회원정보를 수정합니다.")
+					mm_frm.submit();
+				})
+			})
+		</script>
+		   <button type="button" id="fbtn">회원정보수정</button>
 		   <a href=""><button type="button" id="fbtn">회원삭제</button></a>
 		   <a href="/"><button type="button">메인페이지 이동</button></a>
 	  </form>

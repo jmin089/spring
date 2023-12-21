@@ -39,7 +39,7 @@
 	<body>
 	  <div>
 	   <h1>회원정보수정</h1>
-	   <form name="m_frm" method="post" action="doMInsert">
+	   <form name="m_frm" method="post" action="mView">
 		   <table>
 		     <tr>
 		       <th>아이디</th>

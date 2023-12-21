@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java.www.dto.BoardDto;
 import com.java.www.dto.MemberDto;
+
 
 @Controller
 @RequestMapping("member")
@@ -22,7 +24,12 @@ public class MemberController {
 	
 	@RequestMapping("doMInsert")
 	public String doMInsert(MemberDto memberDto, Model model) {
+		//1. HttpServletRequest request로 String id = request.getParameter("id");
+		//2. @RequestParam String id
+		//3. 변수로 받는 방법
+		//4. 객체로 받는 방법 - MemberDto memberDto
 		model.addAttribute("memberDto",memberDto);
+		System.out.println("MemberController hobby : "+memberDto.getHobby());
 		return "member/memberView";
 	}
 		
@@ -31,6 +38,12 @@ public class MemberController {
 	public String mUpdate(MemberDto memberDto, Model model) {
 		model.addAttribute("memberDto",memberDto);
 		return "member/memberUpdate";
+	}
+	
+	@RequestMapping("mView")
+	public String mView(MemberDto memberDto, Model model) {
+		model.addAttribute("memberDto",memberDto);
+		return "member/memberView";
 	}
 	
 	//---------------------------------------------------------------------- 로그인
