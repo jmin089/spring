@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- MemberMapper.java(InterFace) 연결 -->
+<mapper namespace="com.java.www.mapper.BoardMapper">
+
+	<!-- 게시글 전체 가져오기 -->
+	<select id="bList" resultType="com.java.www.dto.BoardDto">
+		select * from board order by bgroup desc, bstep asc
+	</select>
+	
+	<!-- 게시글 1개 가져오기 -->
+	<select id="selectOne" resultType="com.java.www.dto.BoardDto">
+		select * from board where bno=#{bno}
+	</select>
+	
+	<!-- 게시글 파일 저장 -->
+	<insert id="bInsert">
+		insert into board values(board_seq.nextval,#{btitle},#{bcontent},
+		sysdate,#{id},board_seq.currval,0,0,1,#{bfile})
+	</insert>
+</mapper>
