@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- MemberMapper.java(InterFace) 연결 -->
+<mapper namespace="com.java.www.mapper.BoardMapper">
+
+	<select id="selectAll" resultType="com.java.www.dto.BoardDto">
+		<![CDATA[select * from (select rownum rnum,a.* from (select * from board order by bgroup desc, bstep asc) a)where rnum>=1 and rnum<=20]]>
+	</select>
+	
+	<select id="selectOne" resultType="com.java.www.dto.BoardDto">
+		select * from board where bno=#{bno}
+	</select>
+	
+	<select id="selectOnePrev" resultType="com.java.www.dto.BoardDto">
+		select * from (select row_number() over(order by bgroup desc, bstep asc) rnum, a.* from board a) where rnum = 
+		(select rnum from (select row_number() over(order by bgroup desc, bstep asc) rnum, a.* from board a) where bno = #{bno})+1
+	</select>
+	
+	<select id="selectOneNext" resultType="com.java.www.dto.BoardDto">
+		select * from (select row_number() over(order by bgroup desc, bstep asc) rnum, a.* from board a) where rnum = 
+		(select rnum from (select row_number() over(order by bgroup desc, bstep asc) rnum, a.* from board a) where bno = #{bno})-1
+	</select>
+</mapper>
