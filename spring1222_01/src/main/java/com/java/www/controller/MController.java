@@ -69,7 +69,7 @@ public class MController {
 		String phone = f_tell+"-"+m_tell+"-"+l_tell;
 		mdto.setPhone(phone);
 		String result = mService.mInsert(mdto);
-		System.out.println("jsdfijdfsajhafdshfkjadsf : "+result);
+		System.out.println("MController mInsert result : "+result);
 		return result;
 	}
 	
