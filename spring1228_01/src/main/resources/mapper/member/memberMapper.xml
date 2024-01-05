@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- MemberMapper.java(InterFace) 연결 -->
+<mapper namespace="com.java.www.mapper.MemberMapper">
+	
+	<!-- jsp 로그인 확인 -->
+	<select id="login" resultType="com.java.www.dto.MemberDto">
+		select * from member where id=#{id} and pw=#{pw}
+	</select>
+	
+	<!-- ajax 로그인 확인 -->
+	<select id="a_login" resultType="com.java.www.dto.MemberDto">
+		select * from member where id=#{id} and pw=#{pw}
+	</select>
+	
+	<!-- 회원가입 저장 -->
+	<insert id="memInsert">
+		insert into member(id, pw, name, phone, mdate) values(#{id}, #{pw}, #{name}, #{phone}, sysdate)
+	</insert>
+	
+</mapper>
