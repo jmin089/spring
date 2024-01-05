@@ -1,0 +1,24 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- MemberMapper.java(InterFace) 연결 -->
+<mapper namespace="com.java.www.mapper.BoardMapper">
+	
+	<!-- 공지사항 전체가져오기 -->
+	<select id="selectAll" resultType="com.java.www.dto.BoardDto">
+		select * from (select row_number() over (order by bgroup desc, bstep asc) rnum, a.* from board a)
+		where rnum between 1 and 10
+	</select>
+	
+	<!-- 공지사항 게시글 1개 가져오기 -->
+	<select id="selectOne" resultType="com.java.www.dto.BoardDto">
+		select * from board where bno=#{bno}
+	</select>
+	
+	<!-- 하단댓글 모두 가져오기 -->
+	<select id="bC_selectAll" resultType="com.java.www.dto.BCommentDto">
+		select * from ecomment where bno=#{bno} order by cno desc
+	</select>
+	
+</mapper>

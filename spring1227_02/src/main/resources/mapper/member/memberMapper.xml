@@ -1,0 +1,13 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- MemberMapper.java(InterFace) 연결 -->
+<mapper namespace="com.java.www.mapper.MemberMapper">
+	
+	<!-- 로그인 확인 -->
+	<select id="login" resultType="com.java.www.dto.MemberDto">
+		select *from member where id=#{id} and pw=#{pw}
+	</select>
+	
+</mapper>
