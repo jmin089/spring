@@ -1,0 +1,14 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- MemberMapper.java(InterFace) 연결 -->
+<mapper namespace="com.java.www.mapper.IncomeMapper">
+	
+	<!-- 차트 - 매출액 가져오기 -->
+	<select id="incomeSelect" resultType="com.java.www.dto.IncomeDto">
+		select * from income where cyear=#{cyear} order by cmonth
+	</select>
+	
+	
+</mapper>

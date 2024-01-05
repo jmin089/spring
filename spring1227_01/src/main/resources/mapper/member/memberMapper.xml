@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- MemberMapper.java(InterFace) 연결 -->
+<mapper namespace="com.java.www.mapper.MemberMapper">
+	
+	<!-- 로그인 확인 -->
+	<select id="login" resultType="com.java.www.dto.MemberDto2">
+		select *from member2 where id=#{id} and pw=#{pw}
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="a_idsearch" resultType="com.java.www.dto.MemberDto2">
+		select *from member2 where name=#{name} and email=#{email} 
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="pwsearch" resultType="com.java.www.dto.MemberDto2">
+		select *from member2 where id=#{id} and email=#{email} 
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="update_pw">
+		update member2 set pw=#{pwcode} where id=#{id} 
+	</update>
+	
+	<!-- 아이디 중복확인 -->
+	<select id="idCheck" resultType="com.java.www.dto.MemberDto2">
+		select *from member2 where id=#{id} 
+	</select>
+	
+</mapper>

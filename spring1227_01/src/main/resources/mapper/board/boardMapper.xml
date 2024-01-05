@@ -1,0 +1,66 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- MemberMapper.java(InterFace) 연결 -->
+<mapper namespace="com.java.www.mapper.BoardMapper">
+	
+	<!-- 공지사항 전체가져오기 -->
+	<select id="selectAll" resultType="com.java.www.dto.BoardDto">
+		select * from(select rownum rnum,a.* from(select * from board 
+		
+			<if test="category == 'btitle' or category == 'bcontent'">
+				where ${category} like '%'||#{searchWord}||'%'
+			</if>
+			<if test="category == 'all'">
+				where btitle like '%'||#{searchWord}||'%' or bcontent like '%'||#{searchWord}||'%'
+			</if>
+		
+		order by bgroup desc,bstep asc) a)where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 게시글 총개수 null, all, btitle, bcontent가 넘어옴-->
+	<select id="selectCountAll" resultType="int">
+		select count(*) from board
+		<if test="category == 'btitle' or category == 'bcontent'">
+			where ${category} like '%'||#{searchWord}||'%'
+		</if>
+		<if test="category == 'all'">
+			where btitle like '%'||#{searchWord}||'%' or bcontent like '%'||#{searchWord}||'%'
+		</if>
+	</select>
+	
+	<!-- 공지사항 게시글 1개 가져오기 -->
+	<select id="selectOne" resultType="com.java.www.dto.BoardDto">
+		select * from board where bno=#{bno}
+	</select>
+	
+	<!-- 하단댓글 모두 가져오기 -->
+	<select id="bCommentSelectAll" resultType="com.java.www.dto.BCommentDto">
+		select * from ecomment where bno=#{bno} order by cno desc
+	</select>
+	
+	<!-- ajax 댓글 1개 저장하기 -->
+	<insert id="BCommentInsert">
+		<selectKey resultType="com.java.www.dto.BCommentDto" keyProperty="cno,cdate" order="BEFORE">
+			select ecomment_seq.nextval cno,sysdate cdate from dual
+		</selectKey>
+		insert into ecomment values(#{cno},#{bno},#{id},#{cpw},#{ccontent},sysdate)
+	</insert>
+	
+	<!-- ajax 댓글 1개 가져오기 -->
+	<select id="BCommentSelectOne" resultType="com.java.www.dto.BCommentDto">
+		select * from ecomment where cno=#{cno}
+	</select>
+	
+	<!-- 댓글 1개 삭제 -->
+	<delete id="BCommentDelete">
+		delete ecomment where cno=#{cno}
+	</delete>
+	
+	<!-- 댓글 수정 저장 -->
+	<update id="BCommentUpdate">
+		update ecomment set ccontent=#{ccontent}, cdate=sysdate where cno=#{cno}
+	</update>
+	
+</mapper>
