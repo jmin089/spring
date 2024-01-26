@@ -1,6 +1,5 @@
 package com.java.www.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.www.dto.BCommentDto;
-import com.java.www.dto.BoardDto;
 import com.java.www.service.BService;
 
 import jakarta.servlet.http.HttpSession;
@@ -62,7 +60,6 @@ public class BController {
 	}
 	
 	//댓글 1개 저장 후 댓글 1개 가져오기
-	@PostMapping("BCommentInsert")
 	@ResponseBody                      //ajax 데이터 전송
 	public BCommentDto BCommentInsert(BCommentDto cdto) {
 		System.out.println("BController BCommentInsert bno : "+cdto.getBno());
