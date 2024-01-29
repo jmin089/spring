@@ -312,8 +312,6 @@ $(document).ready(function() {
 						</form>
 					</div>
 <!-- 게시글 검색 -->
-					<!-- //포토 구매후기 -->
-
 
 				</div>
 			</div>
