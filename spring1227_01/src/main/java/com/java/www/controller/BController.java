@@ -60,6 +60,7 @@ public class BController {
 	}
 	
 	//댓글 1개 저장 후 댓글 1개 가져오기
+	@PostMapping("BCommentInsert")
 	@ResponseBody                      //ajax 데이터 전송
 	public BCommentDto BCommentInsert(BCommentDto cdto) {
 		System.out.println("BController BCommentInsert bno : "+cdto.getBno());
